@@ -1,0 +1,11 @@
+.homepage {
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    .prodcutcard{
+        margin : 10px;
+        width :  330px;
+        height : 430px;
+        border : solid 1px blue
+    }
+}

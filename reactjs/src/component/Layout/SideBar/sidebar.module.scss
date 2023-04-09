@@ -1,0 +1,20 @@
+.wrapper {
+    width: 370px;
+    min-height: 1000px;
+
+}
+
+.sidebar {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    div {
+        height: 40px;
+        width: 300px;
+        background-color: aquamarine;
+        margin: 5px;
+        font-size: 20px;
+    }
+}

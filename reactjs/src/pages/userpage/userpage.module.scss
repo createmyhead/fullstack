@@ -1,0 +1,71 @@
+.userpage{
+    margin-left: 5px;
+    margin-top: 30px;
+    width: 1050px;
+    height: 580px;
+    display: flex;
+    justify-content:space-around;
+    flex-direction: column;
+    background-color: rgb(0, 255, 98);
+    align-items: center;
+    border-radius: 20px;
+    
+
+}
+.profile{
+    margin :15px;
+    padding :10px;
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    background-color: rgb(200, 255, 0);
+    border-radius: 20px;
+}
+.productbox{
+    width: 1000px;
+    height: 430px;
+    padding :10px;
+    background-color: rgb(200, 255, 0);
+    border-radius: 20px;
+    div{
+        width: 999px;
+        form{
+            width: 999px;
+            display: flex;
+            justify-content:space-around;
+            flex-wrap: wrap;
+            div{
+                display: flex;
+                width: 330px;
+                label{
+                    margin :2px;
+                    width : 110px;
+                }
+                input{
+                    margin :2px;
+                    width : 200px;
+    
+                }
+                button {
+                    margin-top: 10px;
+                    width: 150px;
+                    height:25px ;
+                    border: none;
+                    background-color: darksalmon;
+                    border-radius: 15px;
+                    cursor: pointer;
+            
+                    &:hover {
+                        opacity: 0.7;
+                    }
+                }
+                
+            }
+            
+        }
+       
+    }
+}
+   
+
+
