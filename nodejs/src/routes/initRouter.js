@@ -1,5 +1,4 @@
 import express from 'express';
-import multer from 'multer';
 const router = express.Router();
 const myModule = require('../controller/admin');
 import Login from '../service/login'
@@ -27,6 +26,10 @@ const initRouter = (app) => {
     });
     // Register
     router.post('/user/register', moduleUser.CreateNewUser);
+    // Upload avatar
+    router.put('/user/:userid/avatar', moduleUser.UpLoadAvatar)
+    // Get all Infro of Userid
+    router.get('/user/:userid/information', moduleUser.GetInforUser)
     // Edit User
     router.put('/user/:userid', moduleUser.EditUser);
     //Delete user by userid 

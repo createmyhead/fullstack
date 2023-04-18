@@ -2,53 +2,58 @@ import express from 'express';
 const mysql = require('mysql2');
 const router = express.Router();
 
+
 import { connectToLocahostUser, connectToDB, connectToPool } from '../connectDB/connects';
 
 
-const CreateNewProduct = (req, res, next) => {
-    const { productName, price, quantity, sold, description, image } = req.body;
-    if (!productName || !price || !quantity || !description) {
-        return res.status(400).json('information is not full')
-    }
-    const soldOnQueryValue = sold || 0;
-    const userIDCreateValue = req.params.userid;
-    const productCodeOnQueryValue = userIDCreateValue + `-` + productName;
-    const createProductQuery = `INSERT INTO products(userid,product,price,quantity,sold,description,image,productcode) VALUES(?,?,?,?,?,?,?,?)`;
-    connectToPool.getConnection(function (err, connect) {
-        if (err) { throw err } {
-            connect.query(createProductQuery, [
-                userIDCreateValue,
-                productName,
-                price,
-                quantity,
-                soldOnQueryValue,
-                description,
-                image,
-                productCodeOnQueryValue
-            ], function (err, result) {
-                if (err) { throw err }
-                console.log(`created new user ${result} `);
-                connectToPool.releaseConnection(connect);
-                return res.status(200).json({
+const CreateNewProduct = async (req, res, next) => {
+   
+
+    const { productName, price, quantity, sold, description,image} = req.body;
+        if (!productName || !price || !quantity || !description) {
+            return res.status(400).json('information is not full')
+        };
+      
+        const imagedata = image || [];
+        const soldOnQueryValue = sold || 0;
+        const userIDCreateValue = req.params.userid;
+        const productCodeOnQueryValue = userIDCreateValue + `-` + productName;
+        const createProductQuery = `INSERT INTO products(userid,product,price,quantity,sold,description,image,productcode) VALUES(?,?,?,?,?,?,?,?)`;
+        connectToPool.getConnection(function (err, connect) {
+            if (err) { throw err } {
+                connect.query(createProductQuery, [
                     userIDCreateValue,
                     productName,
                     price,
                     quantity,
                     soldOnQueryValue,
                     description,
-                    image,
+                    imagedata,
                     productCodeOnQueryValue
+                ], function (err, result) {
+                    if (err) { throw err }
+                    console.log(`created new user ${result} `);
+                    connectToPool.releaseConnection(connect);
+                    return res.status(200).json({
+                        userIDCreateValue,
+                        productName,
+                        price,
+                        quantity,
+                        soldOnQueryValue,
+                        description,
+                        imagedata,
+                        productCodeOnQueryValue
+                    })
                 })
-            })
-        };
-    });
+            };
+        });
 
-};
+    };
 const GetAllProduct = (req, res, next) => {
     const queryall = `SELECT * FROM products`;
     connectToDB.query(queryall, function (err, result) {
         if (err) { throw err }
-        console.log(result)
+
         return res.status(200).json({ result })
     })
 };

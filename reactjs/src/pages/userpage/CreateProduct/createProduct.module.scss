@@ -1,0 +1,37 @@
+.wrapper {
+    width: 1000px;
+    height: 330px;
+    padding :10px;
+    background-color: rgb(200, 255, 0);
+    border-radius: 20px;
+    form{
+        width: 980px;
+        display: flex;
+        justify-content:space-around;
+        flex-wrap: wrap;
+
+        div{
+            display: flex;
+            label{
+
+            }
+            input{
+
+            }
+            button{
+                margin-top: 10px;
+                width: 150px;
+                height:25px ;
+                border: none;
+                background-color: darksalmon;
+                border-radius: 15px;
+                cursor: pointer;
+
+                &:hover {
+                        opacity: 0.7;
+                    }
+                }
+            }
+        }
+    }
+

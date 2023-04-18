@@ -79,12 +79,37 @@ const DeleteUser = (req, res, next) => {
         }
     })
 }
+const UpLoadAvatar = (req, res, next) => {
+    const { avatar } = req.body;
+    const useidFromParams = req.params.userid ;
+    console.log(useidFromParams)
+    const queryInsertavatar = `UPDATE users SET avatar=? WHERE userid=?`
+    connectToPool.getConnection(function (err, connect) {
+        if (err) { throw err } {
+            connect.query(queryInsertavatar,[avatar,useidFromParams] ,function (err, result) {
+                if (err) { throw err }
+                console.log(`updated !`)
+                connectToPool.releaseConnection(connect);
+                return res.status(200).json(`Updated !new avatar `)
+            })
+        }
+    })
 
+}
+const GetInforUser = async (req, res, next) => { 
+    const useridInPut = req.params.userid;
+    const queryGetInfor = `SELECT * FROM users WHERE userid = ?`;
+    connectToDB.query(queryGetInfor, [useridInPut], function (err, result) {
+        if (err) { throw err }
+        return res.status(200).json({ result })
+    })
+}
 
 
 module.exports = {
     CreateNewUser,
     EditUser,
     DeleteUser,
-   
+    UpLoadAvatar,
+    GetInforUser,
 }

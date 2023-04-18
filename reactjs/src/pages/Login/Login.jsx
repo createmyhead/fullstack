@@ -1,9 +1,9 @@
 import React from 'react';
-import { useState, useEffect,createContext, useContext } from "react";
+import { createContext, useState } from 'react';
 import {useForm,} from "react-hook-form";
 import styles from './Login.module.scss'
 import axios from 'axios'
-import { useNavigate,Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind'
 import Cookies from 'js-cookie';
 
@@ -12,6 +12,8 @@ const cx = classNames.bind(styles)
 
 
 function Login() {
+
+
     const navigate = useNavigate();
     const { register, handleSubmit } = useForm();
     const onSubmit = async data => { 
@@ -21,18 +23,16 @@ function Login() {
                         passwordO: data.password,
                     }
                 ).then(function (response){   
-                    console.log(response.data);
+                    const uSdata = response.data
                     const useridRP = response.data.userid;
                     const userToken = response.data.usertoken
-                    console.log(useridRP)
                     Cookies.set(useridRP, userToken, { expires: 1, path: `/userpage/${useridRP}` });
-                    navigate(`/userpage/${useridRP}` )
+                    navigate(`/userpage/${useridRP}`, { state: {uSdata} } )
                 })
             } catch (error) {
                 console.log(error);
         }
     }
-
     return (
             <form onSubmit={handleSubmit(onSubmit)}>
             <div className={cx('login')}>
@@ -55,8 +55,7 @@ function Login() {
                     ></input>
                 </div>
                 <button
-                    type="submit"
-                    // onClick={ClickLogin}
+                    type="submit"               
                 >LogIn</button>
 
             </div>

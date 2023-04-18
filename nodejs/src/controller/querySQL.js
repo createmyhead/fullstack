@@ -6,7 +6,7 @@ export const createtableDB = `(
     userid VARCHAR(255),
     email VARCHAR(255),
     password VARCHAR(255),
-    avatar BLOB,
+    avatar MEDIUMBLOB,
     roleid VARCHAR(255))`;
 
 export const createtableproduct = ` (
@@ -17,7 +17,7 @@ export const createtableproduct = ` (
     quantity VARCHAR(255),
     sold VARCHAR(255),
     description TEXT(65000),
-    image BLOB,
+    image LONGBLOB,
     productcode VARCHAR(255))`
 
 export const createTableReview  = `(
@@ -35,5 +35,5 @@ export const CreateTableOrderQueryComlum = `(
     quantity VARCHAR(255),
     Sum VARCHAR(255),
     useridorder VARCHAR(255),
-    image TEXT(65000),
+    image LONGBLOB,
     productcode VARCHAR(255))`

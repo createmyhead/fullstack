@@ -12,10 +12,11 @@ function HomePage() {
     useEffect(() => {
         axios.get('http://localhost:5000/api/home/product').then(
             response => {
-                setproductlist(response.data.result);
+                setproductlist(response.data.result); 
             }).catch(error => { console.log(error) })         
     }, []
     );
+    
 
     return (
         <div className={cx("homepage")}>
@@ -25,7 +26,7 @@ function HomePage() {
                         name={item.product}
                         price={item.price}
                         quantity={item.quantity}
-                        // image={item.image}
+                        image={item.image}
                         description={item.description}
                         sold={item.solde}
                         userid={item.userid}

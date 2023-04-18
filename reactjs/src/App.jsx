@@ -1,17 +1,16 @@
 import React from 'react';
-import { Provider } from 'react-redux';
 import styles from './App.module.scss'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import publicRoutes from './routes/publicRoutes';
 import privateRoutes from './routes/privateRoutes';
 import DefaultLayout from './component/Layout/DefaultLayout/Layout';
 import UserLayout from './component/Layout/UserLayout/userlayout'
-import store from './app/store'
+import useDataContext from './Context/useDataContext';
 
 
 function App() {
   return (
-    <Provider store={store}>
+    <useDataContext.Provider>
       <Router>
         <div className={styles.App}>
           <Routes>
@@ -46,7 +45,7 @@ function App() {
           </Routes>
           </div>
         </Router> 
-      </Provider>
+    </useDataContext.Provider>
   )
 }
 
