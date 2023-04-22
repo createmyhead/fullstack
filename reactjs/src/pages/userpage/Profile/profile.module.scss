@@ -1,0 +1,29 @@
+.forminfor{
+    width : 1450px;
+    height: 120px;
+    display : flex;
+    justify-content:space-around;
+    background-color: yellow;
+    border-radius: 20px;
+    padding: 10px;
+    border: 1px solid red;
+    margin : 5px;
+    .wrapper{
+        font-size: 25px;
+        width : 600px; 
+        display:flex;
+        justify-content:space-around;
+        div{
+            width: 150px;
+            height: 100%; 
+        }
+
+
+    }
+    .updateavatar{
+        font-size: 25px;
+        width : 600px; 
+        display:flex;
+        justify-content:space-around;
+    }
+}

@@ -47,10 +47,12 @@ const ViewAndEditProfile = (state, action) => {
 
 const MyProfile = () => {
     const dataUserFromLogin = useContext(userDataAfterLogin)
-    const { userid, email, roleid, usertoken, avatar } = dataUserFromLogin;
-    const base64String = new Buffer(avatar, 'base64').toString('binary');
-    const myarry = JSON.parse(base64String);
-    console.log(myarry)
+    const newdatafromLogin = { ...dataUserFromLogin.uSdata };
+
+    const newavatar = newdatafromLogin.avatar;
+    const base64String = new Buffer(newavatar, 'base64').toString('binary');
+    const UrlAvatar = JSON.parse(base64String);
+   
     const location = useLocation();
     const param = location.pathname;
     const userParam = param.split('/');
@@ -68,7 +70,6 @@ const MyProfile = () => {
             const dataImage = state.avatar;
             const newb64 = await imageToBase64(dataImage);
             const stringdata = JSON.stringify(newb64);
-            console.log(stringdata);
             const avatarData = { avatar: stringdata };
             const configAxios = {
                 headers: {
@@ -82,26 +83,34 @@ const MyProfile = () => {
         
     }
     return (
-        <form onSubmit={hadleUpLoad }>
-            <div>
-                <div>
+        <form onSubmit={hadleUpLoad} className={cx("forminfor") }>
+            <div className={cx("wrapper") }>
+                <div className={cx("useid") }>
                     <label>user ID : </label>
-                    <div>{userid}</div>
+                    <div>{ newdatafromLogin.userid}</div>
                 </div>
-                <div>
+                <div className={cx("email") }>
                     <label>Email : </label>
-                    <div>{email}</div>
+                    <div>{ newdatafromLogin.email}</div>
+                </div>
+                <div className={cx("avatar") }>
+                    <label> Avatar: </label>
+                    <img src={UrlAvatar } alt="avatarcurrent" width="50px" height="50px" />
                 </div>
             </div>
             <div>
-                <label>Avatar :</label>
+                <button>Change Password & Email</button>
+               
+            </div>
+            <div className={cx("updateavatar") }>
+                <label>Change Avatar</label>
                 {/* <img src={ } alt ="" width="50px" height="50px" /> */}
                 <div>
                     <input
                         onChange={hadleUpLoadImage}
                         type="file"
                     ></input>
-                    {state.preview && <img src={state.preview } alt='preview' width="50px" height='50px' />}
+                    {state.preview && <img src= { state.preview } alt='preview' width="50px" height='50px' />}
                 </div>
                 <button
                     type="submit" disabled={!state.avatar || state.uploading}>

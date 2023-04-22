@@ -63,7 +63,6 @@ const GetAllProductListOfUser = (req, res, next) => {
     const AllProductOfUserQuery = `SELECT * FROM products WHERE userid = ?`;
     connectToDB.query(AllProductOfUserQuery, [userIDFromParams], function (err, result) {
         if (err) { throw err }
-        console.log(result)
         return res.status(200).json({ result })
     })
 };

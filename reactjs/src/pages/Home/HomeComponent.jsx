@@ -16,8 +16,6 @@ function HomePage() {
             }).catch(error => { console.log(error) })         
     }, []
     );
-    
-
     return (
         <div className={cx("homepage")}>
             {productlist.map(item => (
